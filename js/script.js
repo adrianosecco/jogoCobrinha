@@ -7,6 +7,7 @@ snake[0] = { //Desenhando a cobrinha
     x: 8 * box,
     y: 8 * box
 }
+let direction = "right";
 
 function criarBG() {
     context.fillStyle = "lightgreen";
@@ -20,5 +21,29 @@ function criarCobrinha() {
     }
 }
 
-criarBG();
-criarCobrinha();
+function iniciarJogo() { //As funções foram passadas dentro de uma função, para que sejam carregadas corretamente e seu intervalo seja o correto, conforme definido na função iniciarJogo()
+    criarBG();
+    criarCobrinha();
+
+    let snakeX = snake[0].x;     //A cobrinha começa na poosição 0 de X e Y, utilizando o array snake criado no início do documento, como váriavel do tipo array global.
+    let snakeY = snake[0].y;
+
+    //Coordenadas
+    if(direction == "right") snakeX += box; //Condição para que se a cobrinha estiver indo para a direita, será acrescentado um quadradinho na posição de snakeX
+    if(direction == "left") snakeX -= box; //Plano cartesiano, acrescenda na direita e tira da esquerda, assim cria a impressão de que a cobrinha está indo para a direita
+    if(direction == "up") snakeX -= box;
+    if(direction == "down") snakeX += box;
+
+    snake.pop(); //Remove o último elemento do Array, dando a impressão de que foi comido oO
+
+    // Criando uma nova cabeça
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    }
+
+    snake.unshift(newHead); //Acrescenta uma nova cabeça no primeiro elemento, utilizando o método unshift
+}
+
+let jogo = setInterval(iniciarJogo, 100); //Função para que seja iniciado o jogo após MS. A cada 100 MS será atualizado o desenrolar do jogo, dando continuidade e evitando travar o jogo
+
