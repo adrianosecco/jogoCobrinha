@@ -9,6 +9,7 @@ snake[0] = { //Desenhando a cobrinha
 }
 let direction = "right";
 
+//Função do background, quadro de fundo do jogo onde a cobrinha irá poder se movimentar, criando uma limitação de área
 function criarBG() {
     context.fillStyle = "lightgreen";
     context.fillRect(0, 0, 16 * box, 16 * box); // desenha a caixa onde vamos trabalhar o jogo. tamanho de 16 quadradinhos multipiclado pela box
@@ -33,7 +34,11 @@ function update (event) { //teclas: cima 38, baixo 40, esquerda 37, direita 39
 }
 
 function iniciarJogo() { //As funções foram passadas dentro de uma função, para que sejam carregadas corretamente e seu intervalo seja o correto, conforme definido na função iniciarJogo()
-    
+    //Se a posição de snake[0].x, que é a cabeça da cobrinha for maior que 15 multiplicado pelo box (tela), ela recebe o valor de zero e reaparece no valor de zero, dando a impressão que atravessou a tela
+    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+    if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
     
     criarBG();
     criarCobrinha();
