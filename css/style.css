@@ -1,0 +1,9 @@
+body{
+    height: 95vh; /*-- vh é a parte que fica a vista, 95 não cria barra de rolagem */
+    width: 95;
+    display: flex; /* flex box é utilizado para setar o posicionamento */
+    justify-content: center; /* alinha horizontalmente no meio */
+    align-items: center; /* alinha verticalmente no meio*/
+    flex-direction: column; /*coloca os elementos em coluna */
+    color: green;
+}
