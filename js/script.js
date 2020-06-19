@@ -45,12 +45,19 @@ function update (event) { //teclas: cima 38, baixo 40, esquerda 37, direita 39
     if(event.keyCode == 40 && direction != "up") direction = "down";
 }
 
-function iniciarJogo() { //As funções foram passadas dentro de uma função, para que sejam carregadas corretamente e seu intervalo seja o correto, conforme definido na função iniciarJogo()
+function iniciarJogo() { //As funções foram passadas dentro de uma função, para que sejam carregadas corretamente e seu intervalo seja o correto, conforme definido na função iniciarJogo()        
     //Se a posição de snake[0].x, que é a cabeça da cobrinha for maior que 15 multiplicado pelo box (tela), ela recebe o valor de zero e reaparece no valor de zero, dando a impressão que atravessou a tela
     if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
     if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
     if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
     if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+
+    for(i = 1; i < snake.length; i++){
+        if(snake[0].x == snake[i]).x && snake[0].y == snake[i].y){ //Se a posição zero de snake.x for exatamente a mesma da posição i E a posição zero de y for igual a posição i de y, vamos parar a função jogo e damos um alert de game over
+            clearInterval(jogo);
+            alert('Game Over :(');
+        }
+    }
     
     criarBG();
     criarCobrinha();
