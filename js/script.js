@@ -65,7 +65,13 @@ function iniciarJogo() { //As funções foram passadas dentro de uma função, p
     if(direction == "up") snakeY -= box;
     if(direction == "down") snakeY += box;
 
-    snake.pop(); //Remove o último elemento do Array, dando a impressão de que foi comido oO
+    //Aumentando o tamanho da cobrinha e criando aleatoriamente um novo local para a comidinha, após ser comida oO
+    if(snakeX != food.x || snakeY != food.y){
+        snake.pop(); //Remove o último elemento do Array, dando a impressão de que foi comido oO      
+    }
+    else{food.x = Math.floor(Math.random() * 15 + 1) * box; //Recebendo novamente uma posição aleatória para x
+        food.y = Math.floor(Math.random() * 15 + 1) * box; //Recebendo novamente uma posição aleatória para y       
+    } 
 
     // Criando uma nova cabeça
     let newHead = {
