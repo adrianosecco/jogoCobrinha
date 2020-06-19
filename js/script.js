@@ -9,6 +9,12 @@ snake[0] = { //Desenhando a cobrinha
 }
 let direction = "right";
 
+//o Math.floor remove a parte flutuante do Math.random (remove 0.). O Math.random retorna sempre um número aleatório até 1
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,    
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
+
 //Função do background, quadro de fundo do jogo onde a cobrinha irá poder se movimentar, criando uma limitação de área
 function criarBG() {
     context.fillStyle = "lightgreen";
@@ -20,6 +26,12 @@ function criarCobrinha() {
         context.fillStyle = "green";
         context.fillRect(snake[i].x, snake[i].y, box, box); // Tamanho de X e Y é o tamanho definido no array e o tamanho do box que será o tamanho do quadradinho
     }
+}
+
+//Função para comer a comidinha
+function drawFood() {
+    context.fillStyle = "red";
+    context.fillRect(food.x, food.y, box, box);
 }
 
 //Criando os eventos de escuta, para capturar o comando que irá controlar os movimentos da cobrinha e interpretar no browser
@@ -42,6 +54,7 @@ function iniciarJogo() { //As funções foram passadas dentro de uma função, p
     
     criarBG();
     criarCobrinha();
+    drawFood();
 
     let snakeX = snake[0].x;     //A cobrinha começa na poosição 0 de X e Y, utilizando o array snake criado no início do documento, como váriavel do tipo array global.
     let snakeY = snake[0].y;
