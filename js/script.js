@@ -21,7 +21,20 @@ function criarCobrinha() {
     }
 }
 
+//Criando os eventos de escuta, para capturar o comando que irá controlar os movimentos da cobrinha e interpretar no browser
+//addEventListener captura a ação da tecla e chama a função update
+document.addEventListener('keydown', update);
+//Passa como argunto o evento de ação da tecla da função abaixo
+function update (event) { //teclas: cima 38, baixo 40, esquerda 37, direita 39
+    if(event.keyCode == 37 && direction != "right") direction = "left";
+    if(event.keyCode == 38 && direction != "down") direction = "up";
+    if(event.keyCode == 39 && direction != "left") direction = "right";
+    if(event.keyCode == 40 && direction != "up") direction = "down";
+}
+
 function iniciarJogo() { //As funções foram passadas dentro de uma função, para que sejam carregadas corretamente e seu intervalo seja o correto, conforme definido na função iniciarJogo()
+    
+    
     criarBG();
     criarCobrinha();
 
@@ -31,8 +44,8 @@ function iniciarJogo() { //As funções foram passadas dentro de uma função, p
     //Coordenadas
     if(direction == "right") snakeX += box; //Condição para que se a cobrinha estiver indo para a direita, será acrescentado um quadradinho na posição de snakeX
     if(direction == "left") snakeX -= box; //Plano cartesiano, acrescenda na direita e tira da esquerda, assim cria a impressão de que a cobrinha está indo para a direita
-    if(direction == "up") snakeX -= box;
-    if(direction == "down") snakeX += box;
+    if(direction == "up") snakeY -= box;
+    if(direction == "down") snakeY += box;
 
     snake.pop(); //Remove o último elemento do Array, dando a impressão de que foi comido oO
 
